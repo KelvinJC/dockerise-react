@@ -12,7 +12,7 @@ install:
 # Scripts to be run such as tests
 before_script:
   - echo "no tests"
-
+#
 script: 
   - docker --version # print the docker version for logging
   - docker build -t groups_react .
