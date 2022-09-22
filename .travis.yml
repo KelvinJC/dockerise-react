@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script: 
+  - docker --version # print the docker version for logging
+  - docker build -t groups_react .
+  - docker tag groups_react kaizendev/groups_react
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push kaizendev/groups_react
+ 
